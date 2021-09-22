@@ -283,7 +283,7 @@ void get_points(size_t res)
 	//string equation_string = "Z = exp(Z^2) + C";
 	//string equation_string = "Z = C * (inverse(sinh(Z)) * cosh(Z))";
 	
-	string equation_string = "Z = Z*Z + C";
+	string equation_string = "Z = sin(Z) + C*sin(Z)";
 	
 	string error_string;
 	quaternion_julia_set_equation_parser eqparser;
@@ -350,11 +350,10 @@ void get_points(size_t res)
 
 	//for (size_t i = 0; i < all_4d_points.size(); i++)
 	//{
-
 	//	vector<vector_4> p;
 
 	//	//for (float t = 0; t <= 0.2f; t += 0.01f)
-	//	for (float t = 0; t <= 0.85f; t += 0.01f)
+	//	for (float t = 0; t <= 0.2f; t += 0.01f)
 	//	{
 	//		vector_4 v = getBezierPoint(all_4d_points[i], t);
 	//		p.push_back(v);
@@ -363,12 +362,15 @@ void get_points(size_t res)
 	//	pos.push_back(p);
 	//}
 
+	//return;
+
+
 
 
 
 	for (size_t i = 0; i < all_4d_points.size(); i++)
 	{
-		Curve* curve = new CatmullRom();
+		Curve* curve = new Bezier();
 		curve->set_steps(10);
 
 		for (size_t j = 0; j < all_4d_points[i].size(); j++)
