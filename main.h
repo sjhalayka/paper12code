@@ -370,7 +370,7 @@ void get_points(size_t res)
 
 	for (size_t i = 0; i < all_4d_points.size(); i++)
 	{
-		Curve* curve = new Bezier();
+		Curve* curve = new CatmullRom();
 		curve->set_steps(10);
 
 		for (size_t j = 0; j < all_4d_points[i].size(); j++)
@@ -378,7 +378,8 @@ void get_points(size_t res)
 
 		vector<vector_4> p;
 
-		for (int i = 0; i < curve->node_count(); i++)
+		for (int i = 0; i < curve->node_count()/5; i++)
+		//for (int i = 0; i < curve->node_count(); i++)
 			p.push_back(vector_4(curve->node(i).x, curve->node(i).y, curve->node(i).z, 0));
 
 		if (p.size() == 0)
